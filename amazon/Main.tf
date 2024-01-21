@@ -33,18 +33,28 @@ resource "aws_security_group" "Jenkins-sgs" {
   }
 }
 
+resource "aws_subnet" "vair-sub" {
+  vpc_id = "venu"
+  cidr_block = "10.0.0.0./24"
+  tags {
+    Name = "create-subnet"
+  }
+}
+
 resource "aws_instance" "venu" {
   ami                    = "ami-00ba9d581b8f824f9"
   instance_type          = "t2.micro"
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
-}
+  subnet_id = aws_subnet.vair-sub.id
+} 
 
 resource "aws_instance" "web1" {
   ami                    = "ami-00ba9d581b8f824f9"
   instance_type          = "t2.large"
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
+  subnet_id = aws_subnet.vair-sub.id
   user_data              = templatefile("./install_jenkins.sh", {})
 
   tags = {
@@ -61,6 +71,7 @@ resource "aws_instance" "web2" {
   instance_type          = "t2.medium"
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
+  subnet_id = aws_subnet.vair-sub.id
 
   tags = {
     Name = "Monitoring-via-Grafana"
