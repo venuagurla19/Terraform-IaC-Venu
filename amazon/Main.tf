@@ -34,7 +34,7 @@ resource "aws_security_group" "dj" {
   }
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "app-01" {
    ami                    = "ami-0d2bc8073c06a612f"
    instance_type          = "t2.large"
    key_name               = "ohio"
@@ -49,7 +49,7 @@ resource "aws_instance" "web" {
    }
 }
 
-resource "aws_instance" "web2"  {
+resource "aws_instance" "App-2"  {
    ami           = "ami-0d2bc8073c06a612f"
    instance_type = "t2.medium"
    key_name      = "ohio"
