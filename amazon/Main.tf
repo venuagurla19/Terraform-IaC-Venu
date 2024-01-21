@@ -53,7 +53,7 @@ resource "aws_instance" "web2"  {
    ami           = "ami-0d2bc8073c06a612f"
    instance_type = "t2.medium"
    key_name      = "ohio"
-    vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
+   vpc_security_group_ids = [aws_security_group.Allow_tls.id]
    tags = {
      Name = "Monitoring via Grafana"
    }
