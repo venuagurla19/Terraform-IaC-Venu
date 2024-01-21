@@ -38,13 +38,15 @@ resource "aws_security_group" "Jenkins-sgs" {
 }
 
 resource "aws_subnet" "vair-sub" {
-  vpc_id = "aws_vpc.advik-id.id"
-  cidr_block = "10.0.0.0/24"
+  vpc_id            = aws_vpc.advik-id.id
+  cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2a"
+  
   tags = {
     Name = "create-subnet-Id"
   }
 }
+
 
 resource "aws_instance" "venu" {
   ami                    = "ami-00ba9d581b8f824f9"
