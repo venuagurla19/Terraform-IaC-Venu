@@ -5,7 +5,7 @@ resource "aws_vpc" "venu-id" {
 resource "aws_security_group" "Jenkins-sgs" {
   name        = "Jenkins-Security-Grp"
   description = "Open ports 22, 80, 443, 8080, 9000, 9100, 9090, 3000"
-  vpc_id      = aws_vpc.venu.id
+  vpc_id      = aws_vpc.venu-id.id
 
   ingress = [
     for port in [22, 80, 443, 8080, 9000, 9100, 9090, 3000] : {
