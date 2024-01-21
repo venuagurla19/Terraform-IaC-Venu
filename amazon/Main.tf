@@ -54,6 +54,7 @@ resource "aws_instance" "venu" {
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
   subnet_id = aws_subnet.vair-sub.id
+  associate_public_ip_address = true
 } 
 
 resource "aws_instance" "web1" {
@@ -63,7 +64,7 @@ resource "aws_instance" "web1" {
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
   subnet_id = aws_subnet.vair-sub.id
   user_data              = templatefile("./install_jenkins.sh", {})
-
+  associate_public_ip_address = true
   tags = {
     Name = "amazon-clone"
   }
@@ -79,6 +80,7 @@ resource "aws_instance" "web2" {
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
   subnet_id = aws_subnet.vair-sub.id
+  associate_public_ip_address = true
 
   tags = {
     Name = "Monitoring-via-Grafana"
