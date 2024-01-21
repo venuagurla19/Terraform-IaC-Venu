@@ -36,7 +36,7 @@ resource "aws_security_group" "Jenkins-sgs" {
 resource "aws_subnet" "vair-sub" {
   vpc_id = "aws_vpc.venu.id"
   cidr_block = "10.0.0.0/24"
-  availability_zone = "us-east-2"
+  availability_zone = "us-east-2a"
   tags = {
     Name = "create-subnet-Id"
   }
