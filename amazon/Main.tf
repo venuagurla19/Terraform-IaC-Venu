@@ -34,14 +34,14 @@ resource "aws_security_group" "Jenkins-sgs" {
 }
 
 resource "aws_instance" "venu" {
-  ami                    = "ami-0d2bc8073c06a612f"
+  ami                    = "ami-00ba9d581b8f824f9"
   instance_type          = "t2.micro"
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
 }
 
 resource "aws_instance" "web1" {
-  ami                    = "ami-0d2bc8073c06a612f"
+  ami                    = "ami-00ba9d581b8f824f9"
   instance_type          = "t2.large"
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
@@ -57,7 +57,7 @@ resource "aws_instance" "web1" {
 }
 
 resource "aws_instance" "web2" {
-  ami                    = "ami-0d2bc8073c06a612f"
+  ami                    = "ami-00ba9d581b8f824f9"
   instance_type          = "t2.medium"
   key_name               = "ohio"
   vpc_security_group_ids = [aws_security_group.Jenkins-sgs.id]
