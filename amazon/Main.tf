@@ -2,7 +2,7 @@ resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_security_group" "Jenkins-sg" {
+resource "aws_security_group" "Allow_tls" {
   name        = "Jenkins-Security Group"
   description = "Open 22,443,80,8080,9000,9100,9090,3000"
   vpc_id      = aws_vpc.my_vpc.id
@@ -30,7 +30,7 @@ resource "aws_security_group" "Jenkins-sg" {
   }
 
   tags = {
-    Name = "Jenkins-sg"
+    Name = "Allow_tls"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_instance" "web" {
    ami                    = "ami-0d2bc8073c06a612f"
    instance_type          = "t2.large"
    key_name               = "ohio"
-   vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
+   vpc_security_group_ids = [aws_security_group.Allow_tls.id]
    user_data              = templatefile("./install_jenkins.sh",{})
    
    tags = {
