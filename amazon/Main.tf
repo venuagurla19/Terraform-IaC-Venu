@@ -37,7 +37,7 @@ resource "aws_instance" "web" {
    tags = {
     Name = "amazon clone"
    }
-   root_block-device {
+   root_block_device {
     volume_size = 30
    }
 }
@@ -50,7 +50,7 @@ resource "aws_instance" "web2"  {
    tags {
      Name = "monitoring via Grafana"
    }
-   root_block-device {
+   root_block_device {
     volume_size = 30
     }
 }
