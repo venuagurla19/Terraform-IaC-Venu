@@ -3,27 +3,34 @@ resource "aws_vpc" "my_vpc" {
 }
 
 resource "aws_security_group" "Jenkins-sg" {
-  name        = "allow_tls"
+  name        = "Jenkins-Security Group"
   description = "Open 22,443,80,8080,9000,9100,9090,3000"
   vpc_id      = aws_vpc.my_vpc.id
 
-  ingress {
+  ingress [
+    for port in [22, 80, 443, 8080, 9000,9100,9090,3000] : {
     description = "TLS from VPC"
     from_port   = 22
     to_port     = 3000  # Assuming you want to open ports 22 to 3000, adjust as needed
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
+    ipv6_cidr_blocks =[]
+    prefix_list_ids = []
+    security_groups = []
+    self            = false
+    }
+  ]
 
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+
   }
 
   tags = {
-    Name = "jenkins-sg"
+    Name = "Jenkins-sg"
   }
 }
 
