@@ -1,5 +1,5 @@
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "CIDR Block"
+  cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_security_group" "Jenkins-sg" {
