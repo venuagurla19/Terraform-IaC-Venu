@@ -35,11 +35,12 @@ resource "aws_security_group" "Jenkins-sg" {
 }
 
 resource "aws_instance" "web" {
-  ami                    = "ami-0c7217cdde317cfec"
-  instance_type          = "t2.large"
-  key_name               = "my key"
-  vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
-  user_data              = templatefile("./install_jenkins.sh", {})
+   ami                    = "ami-0d2bc8073c06a612f"
+   instance_type          = "t2.large"
+   key_name               = "ohio"
+   vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
+   user_data              = templatefile("./install_jenkins.sh",{})
+   
    tags = {
     Name = "amazon clone"
    }
@@ -48,12 +49,12 @@ resource "aws_instance" "web" {
    }
 }
 
-resource "aws_instance" "web2" {
-  ami                    = "ami-0c7217cdde317cfec"
-  instance_type          = "t2.medium"
-  key_name               = "my key"
-  vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
-  tags = {
+resource "aws_instance" "web2"  {
+   ami           = "ami-0d2bc8073c06a612f"
+   instance_type = "t2.medium"
+   key_name      = "ohio"
+    vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
+   tags = {
      Name = "Monitoring via Grafana"
    }
    root_block_device {
