@@ -1,11 +1,15 @@
-resource "aws_vpc" "venu-id" {
-  cidr_block = "10.0.0.0/16"
+resource "aws_vpc" "advik-id" {
+  cidr_block = "10.0.0.0/16"  # Replace with your desired CIDR block for the VPC
+
+  tags = {
+    Name = "MyVPC"
+  }
 }
 
 resource "aws_security_group" "Jenkins-sgs" {
   name        = "Jenkins-Security-Grp"
   description = "Open ports 22, 80, 443, 8080, 9000, 9100, 9090, 3000"
-  vpc_id      = aws_vpc.venu-id.id
+  vpc_id      = aws_vpc.advik-id.id
 
   ingress = [
     for port in [22, 80, 443, 8080, 9000, 9100, 9090, 3000] : {
@@ -34,7 +38,7 @@ resource "aws_security_group" "Jenkins-sgs" {
 }
 
 resource "aws_subnet" "vair-sub" {
-  vpc_id = "aws_vpc.venu-id.id"
+  vpc_id = "aws_vpc.advik-id.id"
   cidr_block = "10.0.0.0/24"
   availability_zone = "us-east-2a"
   tags = {
