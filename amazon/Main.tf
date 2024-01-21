@@ -5,7 +5,7 @@ resource "aws_vpc" "venu" {
 resource "aws_security_group" "Jenkins-sgs" {
   name        = "Jenkins-Security-Grp"
   description = "Open ports 22, 80, 443, 8080, 9000, 9100, 9090, 3000"
-  vpc_id      = aws_vpc-0354b8dd791c6a16c
+  vpc_id      = aws_vpc.venu.id
 
   ingress = [
     for port in [22, 80, 443, 8080, 9000, 9100, 9090, 3000] : {
@@ -34,7 +34,7 @@ resource "aws_security_group" "Jenkins-sgs" {
 }
 
 resource "aws_subnet" "vair-sub" {
-  vpc_id = "aws_vpc-0354b8dd791c6a16c"
+  vpc_id = "aws_vpc.venu.id"
   cidr_block = "10.0.0.0/24"
   availability_zone = "us-east-2a"
   tags = {
