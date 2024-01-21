@@ -5,7 +5,7 @@ resource "aws_vpc" "venu" {
 resource "aws_security_group" "av" {
     name = "av"
     description = "Allow all inbound traffic."
-    vpc_id = aws_vpc.venu
+    vpc_id = aws_vpc.venu.id
   
 }
 resource "aws_instance" "web" {
