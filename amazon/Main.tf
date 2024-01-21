@@ -47,8 +47,8 @@ resource "aws_instance" "web2"  {
    instance_type = "t2.medium"
    key_name      = "ohio"
     vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
-   tags {
-     Name = "monitoring via Grafana"
+   tags = {
+     Name = "Monitoring via Grafana"
    }
    root_block_device {
     volume_size = 30
