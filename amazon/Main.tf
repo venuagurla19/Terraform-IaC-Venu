@@ -9,9 +9,9 @@ resource "aws_security_group" "Jenkins-sg" {
 
   ingress = [
     for port in [22, 80, 443, 8080, 9000,9100,9090,3000] : {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 3000  # Assuming you want to open ports 22 to 3000, adjust as needed
+    description = "Allow ${port} from VPC"
+    from_port   = port
+    to_port     = port  # Assuming you want to open ports 22 to 3000, adjust as needed
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks =[]
