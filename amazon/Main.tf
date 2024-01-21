@@ -42,7 +42,7 @@ resource "aws_instance" "web" {
    }
 }
 
-resource "aws_instance" "web2" {
+resource "aws_instance" "web2"  {
    ami = "ami-0d2bc8073c06a612f"
    instance_type = "t2.medium"
    key_name      = "ohio"
@@ -52,4 +52,5 @@ resource "aws_instance" "web2" {
    }
    root_block-device {
     volume_size = 30
+    }
 }
