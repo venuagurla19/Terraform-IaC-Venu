@@ -1,3 +1,7 @@
+
+provider "aws" {
+    region = "us-east-1"
+}
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
 }
@@ -35,9 +39,9 @@ resource "aws_security_group" "Jenkins-sg" {
 }
 
 resource "aws_instance" "web" {
-   ami             = "ami-0d2bc8073c06a612f"
-   instance_type   = "t2.large"
-   key_name        = "ohio"
+   ami                    = "ami-0d2bc8073c06a612f"
+   instance_type          = "t2.large"
+   key_name               = "ohio"
    vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
    user_data              = templatefile("./install_jenkins.sh",{})
    
@@ -50,7 +54,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_instance" "web2"  {
-   ami = "ami-0d2bc8073c06a612f"
+   ami           = "ami-0d2bc8073c06a612f"
    instance_type = "t2.medium"
    key_name      = "ohio"
     vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
