@@ -36,8 +36,8 @@ resource "aws_security_group" "Jenkins-sgs" {
 resource "aws_subnet" "vair-sub" {
   vpc_id = "venu"
   cidr_block = "10.0.0.0./24"
-  tags {
-    Name = "create-subnet"
+  tags = {
+    Name = "create-subnet-Id"
   }
 }
 
