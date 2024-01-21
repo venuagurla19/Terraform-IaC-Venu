@@ -2,7 +2,7 @@ resource "aws_vpc" "venu" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_security_group" "dj" {
+resource "aws_security_group" "Jenkins-sg" {
   name        = "Jenkins-Security Group"
   description = "Open 22,443,80,8080,9000,9100,9090,3000"
   vpc_id      = aws_vpc.venu.id
@@ -30,7 +30,7 @@ resource "aws_security_group" "dj" {
   }
 
   tags = {
-    Name = "dj"
+    Name = "Jenkins-sg"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_instance" "web1" {
   ami                    = "ami-0d2bc8073c06a612f"
   instance_type          = "t2.large"
   key_name               = "ohio"
-  vpc_security_group_ids = [aws_security_group.dj.id]
+  vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
   user_data              = templatefile("./install_jenkins.sh",{})
 
   tags = {
@@ -53,7 +53,7 @@ resource "aws_instance" "web2"  {
   ami           = "ami-0d2bc8073c06a612f"
   instance_type = "t2.medium"
   key_name      = "ohio"
-  vpc_security_group_ids = [aws_security_group.dj.id]
+  vpc_security_group_ids = [aws_security_group.jenkins-sg.id]
   tags = {
     Name = "Monitoring via Grafana"
   }
