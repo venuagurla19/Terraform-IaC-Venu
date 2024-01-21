@@ -3,6 +3,8 @@ resource "aws_vpc" "venu" {
 }
 
 resource "aws_security_group" "av" {
+    vpc_id = aws_vpc.venu
+  
 }
 resource "aws_instance" "web" {
    ami = "ami-0d2bc8073c06a612f"
