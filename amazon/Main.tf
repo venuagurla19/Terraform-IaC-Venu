@@ -1,34 +1,23 @@
-resource "aws_s3_bucket" "veee19-bucket" {
-  bucket = "my-bucket-123"  # Replace with a globally unique name
+resource "data "aws_s3_bucket" "venu-121000" {
+  bucket = "bucket.test.com"
 }
 
-resource "aws_s3_bucket_acl" "bucket_acl" {
-  bucket = aws_s3_bucket.veee19-bucket.bucket
-
-  acl = "private"
+data "aws_route53_zone" "test_zone" {
+  name = "test.com."
 }
 
-resource "aws_s3_object" "jenkins_script" {
-  bucket = aws_s3_bucket.veee19-bucket.bucket
-  key    = "amazon-Clone-App/install_jenkins.sh"
-  source = "Users/VENU AGURLA/Desktop/DevOps/Amazon-Clone-App/amazon/install_jenkins.sh"
-  acl    = "private"
-}
+resource "aws_route53_record" "example" {
+  zone_id = data.aws_route53_zone.test_zone.id
+  name    = "bucket"
+  type    = "A"
 
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.veee19-bucket.bucket
-
-  versioning_configuration {
-    status = "Enabled"
+  alias {
+    name    = data.aws_s3_bucket.venu-121000.website_domain
+    zone_id = data.aws_s3_bucket.venu-121000.hosted_zone_id
   }
+}"venu" {
+  
 }
-
-resource "aws_s3_bucket_logging" "logging" {
-  bucket = aws_s3_bucket.veee19-bucket.bucket
-  target_bucket = aws_s3_bucket.veee19-bucket.bucket  # Use the same bucket for logging
-  target_prefix = "logs/"
-}
-
 
 
 
