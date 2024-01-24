@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "venu-bucket" {
   bucket = "my-unique-bucket"
   key = "amazon-Clone-App"
-  source = "C:\Users\VENU AGURLA\Desktop\DevOps"
+  source = "Users\VENU AGURLA\Desktop\DevOps\Amazon-Clone-App\amazon\install_jenkins.sh"
   acl = "private"
 
   versioning {
