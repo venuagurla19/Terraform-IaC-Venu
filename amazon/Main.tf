@@ -1,9 +1,14 @@
 resource "aws_s3_bucket" "venu-bucket" {
   bucket = "my-unique-bucket-123"  # Replace with a globally unique name
-  acl    = "private"
 }
 
-resource "aws_s3_bucket_object" "jenkins_script" {
+resource "aws_s3_bucket_acl" "bucket_acl" {
+  bucket = aws_s3_bucket.venu-bucket.bucket
+
+  acl = "private"
+}
+
+resource "aws_s3_object" "jenkins_script" {
   bucket = aws_s3_bucket.venu-bucket.bucket
   key    = "amazon-Clone-App/install_jenkins.sh"
   source = "Users/VENU AGURLA/Desktop/DevOps/Amazon-Clone-App/amazon/install_jenkins.sh"
@@ -23,6 +28,7 @@ resource "aws_s3_bucket_logging" "logging" {
   target_bucket = aws_s3_bucket.venu-bucket.bucket  # Use the same bucket for logging
   target_prefix = "logs/"
 }
+
 
 
 
