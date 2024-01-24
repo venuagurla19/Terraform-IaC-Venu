@@ -3,20 +3,20 @@ resource "aws_s3_bucket" "veee19-bucket" {
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {
-  bucket = aws_s3_bucket.venu-bucket.bucket
+  bucket = aws_s3_bucket.veee19-bucket.bucket
 
   acl = "private"
 }
 
 resource "aws_s3_object" "jenkins_script" {
-  bucket = aws_s3_bucket.venu-bucket.bucket
+  bucket = aws_s3_bucket.veee19-bucket.bucket
   key    = "amazon-Clone-App/install_jenkins.sh"
   source = "Users/VENU AGURLA/Desktop/DevOps/Amazon-Clone-App/amazon/install_jenkins.sh"
   acl    = "private"
 }
 
 resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.venu-bucket.bucket
+  bucket = aws_s3_bucket.veee19-bucket.bucket
 
   versioning_configuration {
     status = "Enabled"
@@ -24,8 +24,8 @@ resource "aws_s3_bucket_versioning" "versioning" {
 }
 
 resource "aws_s3_bucket_logging" "logging" {
-  bucket = aws_s3_bucket.venu-bucket.bucket
-  target_bucket = aws_s3_bucket.venu-bucket.bucket  # Use the same bucket for logging
+  bucket = aws_s3_bucket.veee19-bucket.bucket
+  target_bucket = aws_s3_bucket.veee19-bucket.bucket  # Use the same bucket for logging
   target_prefix = "logs/"
 }
 
