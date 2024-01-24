@@ -1,5 +1,7 @@
 resource "aws_s3_bucket" "venu-bucket" {
-  bucket = "my-unique-buvket"
+  bucket = "my-unique-bucket"
+  key = "amazon-Clone-App"
+  source = "C:\Users\VENU AGURLA\Desktop\DevOps"
   acl = "private"
 
   versioning {
