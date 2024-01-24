@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "venu-bucket" {
-  bucket = "my-unique-bucket"
+  bucket = "my-unique-bucket-123"  # Replace with a globally unique name
   acl    = "private"
 }
 
@@ -23,6 +23,7 @@ resource "aws_s3_bucket_logging" "logging" {
   target_bucket = aws_s3_bucket.venu-bucket.bucket  # Use the same bucket for logging
   target_prefix = "logs/"
 }
+
 
 
 resource "aws_subnet" "public" {
