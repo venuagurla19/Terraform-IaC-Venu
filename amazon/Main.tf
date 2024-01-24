@@ -36,7 +36,7 @@ resource "aws_route_table" "private" {
 
 resource "aws_route" "private-internet_out" {
   route_table_id = aws_route_table.private.id
-  nat_gateway_id = aws_nat_gateway.public
+  nat_gateway_id = aws_nat_gateway.public.id
   destination_cidr_block = "0.0.0.0/0"
   
 }
