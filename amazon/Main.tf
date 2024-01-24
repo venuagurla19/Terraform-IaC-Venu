@@ -1,7 +1,7 @@
 resource "aws_subnet" "public" {
   cidr_block = 10.0.1.0/24
   map_customer_owned_ip_on_launch = true
-  vpc_id = aws_vpc.advik-id
+  vpc_id = aws_vpc.advik-id.id
   availability_zone = "us-east-2a"
 
   tags = merge(public, local.common_tags)
@@ -9,7 +9,7 @@ resource "aws_subnet" "public" {
 
 resource "aws_subnet" "private" {
   cidr_block = 10.0.2.0/24
-  vpc_id = aws_vpc.advik-id
+  vpc_id = aws_vpc.advik-id.id
   availability_zone = "us-east-2a"
   tags = merge(private, local.common_tags)
   
@@ -71,7 +71,7 @@ resource "aws_vpc" "advik-id" {
   cidr_block = "10.0.0.0/16"  # Replace with your desired CIDR block for the VPC
 
   tags = {
-    Name = "MyVPC"
+    Name = "amazon-vpc"
   }
 }
 
