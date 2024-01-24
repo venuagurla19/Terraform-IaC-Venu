@@ -3,23 +3,16 @@ resource "aws_subnet" "public" {
   map_customer_owned_ip_on_launch = true
   vpc_id = aws_vpc.advik-id.id
   availability_zone = "us-east-2a"
-
-  tags = merge(public, local.common_tags)
 }
 
 resource "aws_subnet" "private" {
   cidr_block = "10.0.2.0/24"
   vpc_id = aws_vpc.advik-id.id
   availability_zone = "us-east-2a"
-  tags = merge(private, local.common_tags)
-  
 }
 
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.advik-id.id
-
-  tags = merge({Name="Internet Gateway for Advik VPC"},local.common_
-  )
 }
 
 resource "aws_eip" "public" {
