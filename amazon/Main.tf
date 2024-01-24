@@ -1,3 +1,18 @@
+resource "aws_s3_bucket" "venu-bucket" {
+  bucket = "my-unique-buvket"
+  acl = "private"
+
+  versioning {
+    enabled = true
+  }
+  
+
+
+logging {
+  target_bucket = "aws_s3_bucket.bucket"
+  target_prefix = "logs/"
+  }
+}
 resource "aws_subnet" "public" {
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
