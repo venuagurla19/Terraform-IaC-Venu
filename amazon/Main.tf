@@ -1,26 +1,3 @@
-resource "data "aws_s3_bucket" "venu-121000" {
-  bucket = "bucket.test.com"
-}
-
-data "aws_route53_zone" "test_zone" {
-  name = "test.com."
-}
-
-resource "aws_route53_record" "example" {
-  zone_id = data.aws_route53_zone.test_zone.id
-  name    = "bucket"
-  type    = "A"
-
-  alias {
-    name    = data.aws_s3_bucket.venu-121000.website_domain
-    zone_id = data.aws_s3_bucket.venu-121000.hosted_zone_id
-  }
-}"venu" {
-  
-}
-
-
-
 resource "aws_subnet" "public" {
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
