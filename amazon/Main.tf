@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "venu-bucket" {
-  bucket = "my-unique-bucket-123"  # Replace with a globally unique name
+resource "aws_s3_bucket" "veee19-bucket" {
+  bucket = "my-bucket-123"  # Replace with a globally unique name
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {
