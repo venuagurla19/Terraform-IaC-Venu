@@ -1,15 +1,11 @@
 resource "aws_s3_bucket" "venu-bucket" {
   bucket = "my-unique-bucket"
   acl    = "private"
+}
 
-  versioning {
-    enabled = true
-  }
-
-  logging {
-    target_bucket = aws_s3_bucket.venu-bucket.bucket  # Use the reference to the bucket resource
-    target_prefix = "logs/"
-  }
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.venu-bucket.bucket
+  enabled = true
 }
 
 resource "aws_s3_bucket_object" "jenkins_script" {
@@ -18,6 +14,13 @@ resource "aws_s3_bucket_object" "jenkins_script" {
   source = "Users/VENU AGURLA/Desktop/DevOps/Amazon-Clone-App/amazon/install_jenkins.sh"
   acl    = "private"
 }
+
+resource "aws_s3_bucket_logging" "logging" {
+  bucket = aws_s3_bucket.venu-bucket.bucket
+  target_bucket = aws_s3_bucket.venu-bucket.bucket  # Use the same bucket for logging
+  target_prefix = "logs/"
+}
+
 
 resource "aws_subnet" "public" {
   cidr_block = "10.0.1.0/24"
