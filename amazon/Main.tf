@@ -20,7 +20,7 @@ resource "aws_eip" "public" {
 }
 
 resource "aws_nat_gateway" "public" {
-  allocation_id = aws_eip.public
+  allocation_id = aws_eip.public.id
   subnet_id     = aws_subnet.public.id  
 }
 
@@ -30,7 +30,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.advik-id
+  vpc_id = aws_vpc.advik-id.id
   
 }
 
