@@ -3,16 +3,19 @@ resource "aws_s3_bucket" "venu-bucket" {
   acl    = "private"
 }
 
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.venu-bucket.bucket
-  enabled = true
-}
-
 resource "aws_s3_bucket_object" "jenkins_script" {
   bucket = aws_s3_bucket.venu-bucket.bucket
   key    = "amazon-Clone-App/install_jenkins.sh"
   source = "Users/VENU AGURLA/Desktop/DevOps/Amazon-Clone-App/amazon/install_jenkins.sh"
   acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.venu-bucket.bucket
+
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
 
 resource "aws_s3_bucket_logging" "logging" {
