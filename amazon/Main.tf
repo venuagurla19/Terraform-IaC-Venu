@@ -151,3 +151,7 @@ resource "aws_instance" "web2" {
     volume_size = 30
   }
 }
+output "public_ip" {
+    value = aws_instance.terra.public_ip
+    description = "the public  IP address of the server"
+}
